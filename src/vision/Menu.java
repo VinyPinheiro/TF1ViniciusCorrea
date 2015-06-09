@@ -9,12 +9,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.*;
+
+import data.Person;
 
 import sun.util.BuddhistCalendar;
 
 public class Menu extends JFrame implements ActionListener {
+
+	private ArrayList<Person> people;
 
 	private JButton buttonRegister;
 	private JButton buttonConsult;
@@ -24,6 +29,8 @@ public class Menu extends JFrame implements ActionListener {
 	private Container contains = getContentPane();
 
 	public Menu() {
+
+		people = new ArrayList<Person>();
 
 		setTitle("Menu Inicial");
 		setBounds(100, 100, 300, 351);
@@ -66,13 +73,12 @@ public class Menu extends JFrame implements ActionListener {
 		if (e.getSource() == buttonClose) {
 			System.exit(0);
 		} else if (e.getSource() == buttonRegister) {
-			JFrame register = new Register();
+			JFrame register = new Register(people);
 			register.setVisible(true);
-			register.addWindowListener(new WindowAdapter() {
-				public void windowClosing(WindowEvent e) {
-					System.exit(0);
-				}
-			});
+		}
+		else if(e.getSource() == buttonListAll)
+		{
+			ListAll.listPeople(people);
 		}
 
 	}
