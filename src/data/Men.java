@@ -1,12 +1,10 @@
 package data;
 
-import java.util.Date;
-
 public class Men extends Person {
 
 	private String relationship;
 
-	public Men(String name, Character sex, Date dateVaccination, Long cpf,
+	public Men(String name, Character sex, String dateVaccination, Long cpf,
 			String relationship) {
 		super(name, sex, dateVaccination, cpf);
 		setRelationship(relationship);
@@ -19,8 +17,10 @@ public class Men extends Person {
 	public void setRelationship(String relationship) {
 		this.relationship = relationship;
 	}
-	public String toString()
-	{
-		return null;
+
+	public String toString() {
+		return getName() + "\t\t" + ((getSex().equals('M')) ? "Homem" : "Mulher")
+				+ "\t\t" + getDateVaccination() + "\t\t" + getCpf() + "\t\t"
+				+ getRelationship();
 	}
 }

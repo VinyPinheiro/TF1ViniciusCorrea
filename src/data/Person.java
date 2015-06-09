@@ -1,15 +1,13 @@
 package data;
 
-import java.util.Date;
-
 public class Person {
 
 	private StringBuilder name;
 	private Character sex;
-	private Date dateVaccination;
+	private String dateVaccination;
 	private Long cpf;
 
-	public Person(String name, Character sex, Date dateVaccination, Long cpf) {
+	public Person(String name, Character sex, String dateVaccination, Long cpf) {
 		setName(name);
 		setSex(sex);
 		setDateVaccination(dateVaccination);
@@ -32,11 +30,11 @@ public class Person {
 		this.sex = sex;
 	}
 
-	public Date getDateVaccination() {
+	public String getDateVaccination() {
 		return dateVaccination;
 	}
 
-	public void setDateVaccination(Date dateVaccination) {
+	public void setDateVaccination(String dateVaccination) {
 		this.dateVaccination = dateVaccination;
 	}
 
