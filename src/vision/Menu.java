@@ -70,7 +70,7 @@ public class Menu extends JFrame implements ActionListener {
 			register.setVisible(true);
 			register.addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent e) {
-					setVisible(false);	
+					System.exit(0);
 				}
 			});
 		}
