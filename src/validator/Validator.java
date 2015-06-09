@@ -2,7 +2,7 @@ package validator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 
 import data.Person;
 
@@ -17,9 +17,10 @@ public class Validator {
 
 	public static boolean isValidDate(String value) {
 		SimpleDateFormat format;
-
+		
 		format = new SimpleDateFormat("dd/MM/yyyy");
-
+		
+		format.setLenient(false);
 		try {
 			format.parse(value);
 		} catch (ParseException e) {
@@ -58,14 +59,13 @@ public class Validator {
 		}
 
 		dv += (aux % DV2CPFLENGHT < 2) ? 0 : DV2CPFLENGHT - aux % DV2CPFLENGHT;
-		System.out.println(dv);
 		return dv;
 	}
 	
-	public static boolean isUniqueCpf(Long cpf, Person[] people)
+	public static boolean isUniqueCpf(Long cpf, ArrayList<Person> people)
 	{
 		for (Person person : people) {
-			if(person.getCpf() == cpf)
+			if(person.getCpf().equals(cpf))
 				return false;
 		}
 		return true;
