@@ -28,9 +28,9 @@ public class Menu extends JFrame implements ActionListener {
 	private JButton buttonClose;
 	private Container contains = getContentPane();
 
-	public Menu() {
+	public Menu(ArrayList<Person> people) {
 
-		people = new ArrayList<Person>();
+		this.people = people;
 
 		setTitle("Menu Inicial");
 		setBounds(100, 100, 300, 351);

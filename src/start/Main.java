@@ -3,16 +3,23 @@ package start;
 import vision.Menu;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
+
+import data.Person;
 
 import validator.Validator;
 
 public class Main {
 
 	public static void main(String[] args) {
-		JFrame window = new Menu();
+		ArrayList<Person> people = new ArrayList<Person>();
+		
+		JFrame window = new Menu(people);
+		
 		window.setVisible(true);
+		
 		window.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
