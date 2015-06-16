@@ -1,6 +1,6 @@
 package data;
 
-public class Person {
+public class Person implements Comparable{
 
 	private StringBuilder name;
 	private Character sex;
@@ -45,5 +45,9 @@ public class Person {
 	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
-
+	
+	public int compareTo(Object objeto) {
+		Person person = (Person) objeto;
+		return getName().compareTo(person.getName());
+	}
 }
