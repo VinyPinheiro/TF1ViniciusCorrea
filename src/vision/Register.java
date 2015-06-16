@@ -113,12 +113,12 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 		p2.add(textCpf);
 
 		radioman = new JRadioButton();
-		radioman.setText("Homem");
+		radioman.setText("Masculino");
 		radioman.setSelected(true);
 		radioman.addItemListener(this);
 
 		radiowoman = new JRadioButton();
-		radiowoman.setText("Mulher");
+		radiowoman.setText("Feminino");
 		radiowoman.addItemListener(this);
 
 		radiogroup = new ButtonGroup();

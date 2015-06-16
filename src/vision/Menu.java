@@ -80,6 +80,11 @@ public class Menu extends JFrame implements ActionListener {
 		{
 			ListAll.listPeople(people);
 		}
+		else if(e.getSource() == buttonConsult)
+		{
+			JFrame consult = new Consult(people);
+			consult.setVisible(true);
+		}
 
 	}
 }
