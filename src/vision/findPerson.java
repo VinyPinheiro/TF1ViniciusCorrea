@@ -4,10 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,15 +16,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 
 import data.Men;
 import data.Person;
+import data.SecretariaSaude;
 import data.Woman;
 
 public class findPerson extends JFrame implements KeyListener {
 
-	private List<Person> people;
+	private SecretariaSaude data;
 
 	private JTextField textName;
 	private JLabel labelName;
@@ -36,8 +34,8 @@ public class findPerson extends JFrame implements KeyListener {
 	private DefaultTableModel table;
 	private JPanel p;
 
-	public findPerson(ArrayList<Person> people) {
-		this.people = people;
+	public findPerson(SecretariaSaude data) {
+		this.data = data;
 
 		setTitle("Buscar");
 		setBounds(100, 100, 600, 600);
@@ -75,6 +73,7 @@ public class findPerson extends JFrame implements KeyListener {
 	}
 
 	private void matrizPeople(String part) {
+		List<Person> people = data.getPeople();
 		String[] rows = new String[5];
 		Collections.sort(people);
 		table.setNumRows(0);

@@ -1,25 +1,20 @@
 package vision;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
 import data.Person;
-
-import sun.util.BuddhistCalendar;
+import data.SecretariaSaude;
 
 public class Menu extends JFrame implements ActionListener {
 
-	private ArrayList<Person> people;
+	private SecretariaSaude data;
 
 	private JButton buttonRegister;
 	private JButton buttonConsult;
@@ -30,7 +25,7 @@ public class Menu extends JFrame implements ActionListener {
 
 	public Menu(ArrayList<Person> people) {
 
-		this.people = people;
+		data = new SecretariaSaude();
 
 		setTitle("Menu Inicial");
 		setBounds(100, 100, 300, 351);
@@ -73,15 +68,15 @@ public class Menu extends JFrame implements ActionListener {
 		if (e.getSource() == buttonClose) {
 			System.exit(0);
 		} else if (e.getSource() == buttonRegister) {
-			JFrame register = new Register(people);
+			JFrame register = new Register(data);
 			register.setVisible(true);
 		} else if (e.getSource() == buttonListAll) {
-			ListAll.listPeople(people);
+			ListAll.listPeople(data.getPeople());
 		} else if (e.getSource() == buttonConsult) {
-			JFrame consult = new Consult(people);
+			JFrame consult = new Consult(data);
 			consult.setVisible(true);
 		} else if (e.getSource() == buttonFindPerson) {
-			JFrame find = new findPerson(people);
+			JFrame find = new findPerson(data);
 			find.setVisible(true);
 		}
 

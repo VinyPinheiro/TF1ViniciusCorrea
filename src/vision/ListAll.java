@@ -15,6 +15,7 @@ public class ListAll {
 				.println("Nome\t\t\t\t\tSexo\t\tÚltima Vacinação\t\tCPF\t\tEstado Civil/Numero de vezes que engravidou");
 		
 		for (Person person : people) {
+			
 			if(person.getSex().equals('M'))
 				totalMen++;
 			else

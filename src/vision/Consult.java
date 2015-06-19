@@ -10,7 +10,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.text.ParseException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
@@ -21,22 +20,23 @@ import javax.swing.text.MaskFormatter;
 
 import data.Men;
 import data.Person;
+import data.SecretariaSaude;
 import data.Woman;
 
 import validator.Validator;
 
 public class Consult extends JFrame implements ActionListener, WindowListener {
 
-	private ArrayList<Person> people;
+	private SecretariaSaude data;
 
 	private JFormattedTextField textCpf;
 	private JLabel labelCpf;
 	private JButton buttonFind;
 	private Container contains;
 
-	public Consult(ArrayList<Person> people) {
+	public Consult(SecretariaSaude data) {
 
-		this.people = people;
+		this.data = data;
 
 		setTitle("Cadastrar");
 		setBounds(100, 100, 400, 100);
@@ -65,14 +65,6 @@ public class Consult extends JFrame implements ActionListener, WindowListener {
 		contains.add(buttonFind);
 	}
 
-	private Person findPerson(final Long cpf) {
-		for (Person person : people) {
-			if (person.getCpf().equals(cpf))
-				return person;
-		}
-		return null;
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -87,15 +79,40 @@ public class Consult extends JFrame implements ActionListener, WindowListener {
 			return;
 		}
 		if (e.getSource() == buttonFind) {
-			final JFrame consult = new ConsultResult(findPerson(Long.parseLong(textCpf.getText())));
-			
-			consult.setVisible(true);
-			
-			consult.addWindowListener(new WindowAdapter() {
-				public void windowClosing(WindowEvent e) {
-					consult.dispose();
+			Person person = data.findPerson(Long.parseLong(textCpf.getText()));
+
+			if (person == null)
+				JOptionPane.showMessageDialog(this, "Nao encontrado",
+						"Consulta", JOptionPane.PLAIN_MESSAGE);
+			else {
+				if (person.getSex().equals('M')) {
+
+					JOptionPane.showMessageDialog(
+							this,
+							"Nome: " + person.getName() + "\nCPF: "
+									+ person.getCpf().toString()
+									+ "\nÚltima Vacinação: "
+									+ person.getDateVaccination()
+									+ "\nSexo: Masculino" + "\nEstado Civil: "
+									+ ((Men) person).getRelationship(),
+							"Consulta", JOptionPane.PLAIN_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(
+							this,
+							"Nome: "
+									+ person.getName()
+									+ "\nCPF: "
+									+ person.getCpf().toString()
+									+ "\nÚltima Vacinação: "
+									+ person.getDateVaccination()
+									+ "\nSexo: Feminino"
+									+ "\nNumero de gravides: "
+									+ ((Woman) person)
+											.getNumberOfTimesPregnant()
+											.toString(), "Consulta",
+							JOptionPane.PLAIN_MESSAGE);
 				}
-			});
+			}
 		}
 	}
 
@@ -140,45 +157,4 @@ public class Consult extends JFrame implements ActionListener, WindowListener {
 
 	}
 
-	public class ConsultResult extends JFrame {
-		private JLabel name;
-		private JLabel cpf;
-		private JLabel sex;
-		private JLabel dateVaccination;
-		private JLabel other;
-		private Container contain;
-
-		public ConsultResult(Person person) {
-			setTitle("Consulta");
-			contain = getContentPane();
-
-			if (person == null) {
-				setBounds(100, 100, 400, 100);
-				contain.setLayout(new GridLayout(1, 1));
-				name = new JLabel("Não encontrado");
-				contain.add(name);
-			} else {
-				setBounds(100, 100, 400, 300);
-				contain.setLayout(new GridLayout(5, 1));
-				name = new JLabel("Nome:" + person.getName());
-				cpf = new JLabel("CPF: " + person.getCpf().toString());
-				dateVaccination = new JLabel("Última Vacinação: "
-						+ person.getDateVaccination());
-				if (person.getSex().equals('M')) {
-					sex = new JLabel("Sexo: Masculino");
-					other = new JLabel("Estado Civil: "
-							+ ((Men) person).getRelationship());
-				} else {
-					sex = new JLabel("Sexo: Feminino");
-					other = new JLabel("Numero de gravides: "
-							+ ((Woman) person).getNumberOfTimesPregnant()
-									.toString());
-				}
-				contain.add(name);
-				contain.add(cpf);
-				contain.add(dateVaccination);
-				contain.add(other);
-			}
-		}
-	}
 }

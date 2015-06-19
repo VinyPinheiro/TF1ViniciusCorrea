@@ -11,8 +11,6 @@ import java.awt.event.ItemListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -26,16 +24,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import data.Men;
-import data.Person;
-import data.Woman;
+import data.SecretariaSaude;
 
 import validator.Validator;
 
 public class Register extends JFrame implements ActionListener, ItemListener,
 		WindowListener {
 
-	private ArrayList<Person> people;
+	private SecretariaSaude data;
 
 	private JTextField textName;
 	private JLabel labelName;
@@ -59,9 +55,9 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 	private JPanel p5;
 	private JPanel p6;
 
-	public Register(ArrayList<Person> people) {
+	public Register(SecretariaSaude data) {
 
-		this.people = people;
+		this.data = data;
 
 		setTitle("Cadastrar");
 		setBounds(100, 100, 600, 400);
@@ -217,7 +213,7 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 			return;
 		}
 		
-		if(!Validator.isUniqueCpf(Long.parseLong(textCpf.getText()), people))
+		if(!Validator.isUniqueCpf(Long.parseLong(textCpf.getText()), data.getPeople()))
 		{
 			JOptionPane.showMessageDialog(null, "CPF já cadastrado",
 					"ERRO", 1);
@@ -244,11 +240,11 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 				return;
 			}
 
-			addPerson(textName.getText().trim(), textDate.getText(), textCpf
+			data.addPerson(textName.getText().trim(), textDate.getText(), textCpf
 					.getText().trim(), textNumberOfTimesPregnant.getText());
 
 		} else {
-			addPerson(textName.getText().trim(), textDate.getText(), textCpf
+			data.addPerson(textName.getText().trim(), textDate.getText(), textCpf
 					.getText().trim(), comboRelationship.getSelectedIndex());
 
 		}
@@ -256,21 +252,6 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 		JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Salvo", 1);
 
 		this.dispose();
-	}
-
-	private void addPerson(String name, String date, String cpf,
-			String numberOfTimesPregnant) {
-		Woman woman = new Woman(name, 'F', date, Long.parseLong(cpf),
-				Integer.parseInt(numberOfTimesPregnant));
-		people.add(woman);
-
-	}
-
-	private void addPerson(String name, String date, String cpf,
-			int relationship) {
-		Men men = new Men(name, 'M', date, Long.parseLong(cpf),
-				comboRelationship.getItemAt(relationship));
-		people.add(men);
 	}
 
 	@Override
