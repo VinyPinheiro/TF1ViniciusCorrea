@@ -126,7 +126,7 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 		p3.add(radioman);
 		p3.add(radiowoman);
 
-		String[] options = { "Solteiro", "Casado", "Viúvo", "Separado" };
+		String[] options = data.getRelationshipOptions();
 		comboRelationship = new JComboBox<String>(options);
 
 		labelRelationship = new JLabel();

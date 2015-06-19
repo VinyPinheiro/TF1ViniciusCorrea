@@ -31,9 +31,15 @@ public class SecretariaSaude {
 	}
 
 	public void addPerson(String name, String date, String cpf, int relationship) {
-		String[] options = { "Solteiro", "Casado", "Viúvo", "Separado" };
+		String[] options = getRelationshipOptions();
 		Men men = new Men(name, 'M', date, Long.parseLong(cpf),
 				options[relationship]);
 		people.add(men);
+	}
+	
+	public String[] getRelationshipOptions()
+	{
+		String[] options = { "Solteiro", "Casado", "Viúvo", "Separado" };
+		return options;
 	}
 }
