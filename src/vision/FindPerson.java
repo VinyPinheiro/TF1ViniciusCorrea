@@ -22,10 +22,11 @@ import data.Person;
 import data.SecretariaSaude;
 import data.Woman;
 
-public class findPerson extends JFrame implements KeyListener {
+public class FindPerson extends JFrame implements KeyListener {
 
 	private SecretariaSaude data;
 
+	private JLabel labelTotal;
 	private JTextField textName;
 	private JLabel labelName;
 	private JTable tableData;
@@ -34,13 +35,13 @@ public class findPerson extends JFrame implements KeyListener {
 	private DefaultTableModel table;
 	private JPanel p;
 
-	public findPerson(SecretariaSaude data) {
+	public FindPerson(SecretariaSaude data) {
 		this.data = data;
 
 		setTitle("Buscar");
 		setBounds(100, 100, 600, 600);
 		contains = getContentPane();
-		contains.setBackground(new Color(0, 128, 128));
+		contains.setBackground(Color.GRAY);
 		contains.setLayout(new BorderLayout());
 
 		textName = new JTextField();
@@ -57,7 +58,7 @@ public class findPerson extends JFrame implements KeyListener {
 		p.add(textName);
 
 		table = new DefaultTableModel();
-		
+
 		tableData = new JTable(table);
 		table.addColumn("Nome");
 		table.addColumn("CPF");
@@ -66,10 +67,14 @@ public class findPerson extends JFrame implements KeyListener {
 		table.addColumn("Estado Civil/Numero de gravidez");
 		matrizPeople("");
 
+		labelTotal = new JLabel();
+		labelTotal.setText("Total de Cadastros: " + table.getRowCount());
+
 		scrollTableData = new JScrollPane(tableData);
 
 		contains.add("North", p);
 		contains.add("Center", scrollTableData);
+		contains.add("South", labelTotal);
 	}
 
 	private void matrizPeople(String part) {
@@ -77,10 +82,10 @@ public class findPerson extends JFrame implements KeyListener {
 		String[] rows = new String[5];
 		Collections.sort(people);
 		table.setNumRows(0);
-		
+
 		for (int i = 0; i < people.size(); i++) {
-			if (!(people.get(i).getName().toLowerCase()).contains(part.toLowerCase())
-					&& !part.isEmpty())
+			if (!(people.get(i).getName().toLowerCase()).contains(part
+					.toLowerCase()) && !part.isEmpty())
 				continue;
 			rows[0] = people.get(i).getName();
 			rows[1] = people.get(i).getCpf().toString();
@@ -90,10 +95,12 @@ public class findPerson extends JFrame implements KeyListener {
 				rows[4] = ((Men) people.get(i)).getRelationship();
 			} else {
 				rows[2] = "Feminino";
-				rows[4] = ((Woman) people.get(i))
-						.getNumberOfTimesPregnant().toString();
+				rows[4] = ((Woman) people.get(i)).getNumberOfTimesPregnant()
+						.toString();
 			}
+			
 			table.addRow(rows);
+
 		}
 	}
 
@@ -106,6 +113,8 @@ public class findPerson extends JFrame implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		matrizPeople(textName.getText());
+
+		labelTotal.setText("Total de Cadastros: " + table.getRowCount());
 
 	}
 

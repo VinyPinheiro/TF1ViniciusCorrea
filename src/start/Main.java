@@ -9,8 +9,6 @@ import javax.swing.JFrame;
 
 import data.Person;
 
-import validator.Validator;
-
 public class Main {
 
 	public static void main(String[] args) {

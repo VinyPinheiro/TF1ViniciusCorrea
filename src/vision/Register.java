@@ -146,9 +146,10 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 		}
 		textNumberOfTimesPregnant.setColumns(5);
 		textNumberOfTimesPregnant.setVisible(false);
+		textNumberOfTimesPregnant.setToolTipText("Ex.: 02, 10, 01, 05, ...");
 
 		labelNumberOfTimesPregnant = new JLabel();
-		labelNumberOfTimesPregnant.setText("Número de vezes que já engravidou");
+		labelNumberOfTimesPregnant.setText("Número de vezes que já engravidou(2 digitos Ex: 01)");
 		labelNumberOfTimesPregnant.setVisible(false);
 
 		p5 = new JPanel();

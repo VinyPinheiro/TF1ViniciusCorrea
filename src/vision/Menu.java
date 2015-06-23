@@ -71,12 +71,12 @@ public class Menu extends JFrame implements ActionListener {
 			JFrame register = new Register(data);
 			register.setVisible(true);
 		} else if (e.getSource() == buttonListAll) {
-			ListAll.listPeople(data.getPeople());
+			System.out.println(data);
 		} else if (e.getSource() == buttonConsult) {
 			JFrame consult = new Consult(data);
 			consult.setVisible(true);
 		} else if (e.getSource() == buttonFindPerson) {
-			JFrame find = new findPerson(data);
+			JFrame find = new FindPerson(data);
 			find.setVisible(true);
 		}
 

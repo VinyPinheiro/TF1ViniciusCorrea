@@ -42,4 +42,31 @@ public class SecretariaSaude {
 		String[] options = { "Solteiro", "Casado", "Viúvo", "Separado" };
 		return options;
 	}
+	
+	public String toString()
+	{
+		int totalWoman, totalMen;
+		String text;
+		
+		totalMen = 0;
+		totalWoman = 0;
+		
+		text = ("Nome\t\t\t\t\tSexo\t\tÚltima Vacinação\t\tCPF\t\tEstado Civil/Numero de vezes que engravidou");
+		
+		for (Person person : people) {
+			
+			if(person.getSex().equals('M'))
+				totalMen++;
+			else
+				totalWoman++;
+			
+			text +="\n" + person.toString();
+		}
+
+		text += "\n" + ("Total de Mulheres: " + totalWoman);
+		text += "\n" + ("Total de Homens: " + totalMen);
+		text += "\n" + ("Total de Cadastros: " + (totalWoman + totalMen));
+		
+		return text;
+	}
 }
