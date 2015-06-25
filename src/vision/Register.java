@@ -214,7 +214,7 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 			return;
 		}
 		
-		if(!Validator.isUniqueCpf(Long.parseLong(textCpf.getText()), data.getPeople()))
+		if(!data.isUniqueCpf(Long.parseLong(textCpf.getText())))
 		{
 			JOptionPane.showMessageDialog(null, "CPF já cadastrado",
 					"ERRO", 1);

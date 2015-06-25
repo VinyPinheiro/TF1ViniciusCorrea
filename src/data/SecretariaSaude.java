@@ -1,8 +1,10 @@
 package data;
 
+import interfaces.ValorUnico;
+
 import java.util.ArrayList;
 
-public class SecretariaSaude {
+public class SecretariaSaude implements ValorUnico {
 
 	private ArrayList<Person> people;
 
@@ -32,7 +34,7 @@ public class SecretariaSaude {
 
 	public void addPerson(String name, String date, String cpf, int relationship) {
 		String[] options = getRelationshipOptions();
-		Men men = new Men(name, 'M', date, Long.parseLong(cpf),
+		Man men = new Man(name, 'M', date, Long.parseLong(cpf),
 				options[relationship]);
 		people.add(men);
 	}
@@ -68,5 +70,15 @@ public class SecretariaSaude {
 		text += "\n" + ("Total de Cadastros: " + (totalWoman + totalMen));
 		
 		return text;
+	}
+
+	@Override
+	public boolean isUniqueCpf(Long cpf)
+	{
+		for (Person person : people) {
+			if(person.getCpf().equals(cpf))
+				return false;
+		}
+		return true;
 	}
 }

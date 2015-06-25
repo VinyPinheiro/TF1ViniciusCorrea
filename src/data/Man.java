@@ -1,10 +1,10 @@
 package data;
 
-public class Men extends Person {
+public class Man extends Person {
 
 	private String relationship;
 
-	public Men(String name, Character sex, String dateVaccination, Long cpf,
+	public Man(String name, Character sex, String dateVaccination, Long cpf,
 			String relationship) {
 		super(name, sex, dateVaccination, cpf);
 		setRelationship(relationship);

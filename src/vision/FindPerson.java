@@ -17,7 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import data.Men;
+import data.Man;
 import data.Person;
 import data.SecretariaSaude;
 import data.Woman;
@@ -65,7 +65,6 @@ public class FindPerson extends JFrame implements KeyListener {
 		table.addColumn("Sexo");
 		table.addColumn("Última Vacinação");
 		table.addColumn("Estado Civil/Numero de gravidez");
-		matrizPeople("");
 
 		labelTotal = new JLabel();
 		labelTotal.setText("Total de Cadastros: " + table.getRowCount());
@@ -92,7 +91,7 @@ public class FindPerson extends JFrame implements KeyListener {
 			rows[3] = people.get(i).getDateVaccination();
 			if (people.get(i).getSex().equals('M')) {
 				rows[2] = "Masculino";
-				rows[4] = ((Men) people.get(i)).getRelationship();
+				rows[4] = ((Man) people.get(i)).getRelationship();
 			} else {
 				rows[2] = "Feminino";
 				rows[4] = ((Woman) people.get(i)).getNumberOfTimesPregnant()

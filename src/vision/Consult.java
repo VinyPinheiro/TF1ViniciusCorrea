@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.text.MaskFormatter;
 
-import data.Men;
+import data.Man;
 import data.Person;
 import data.SecretariaSaude;
 import data.Woman;
@@ -94,7 +94,7 @@ public class Consult extends JFrame implements ActionListener, WindowListener {
 									+ "\nÚltima Vacinação: "
 									+ person.getDateVaccination()
 									+ "\nSexo: Masculino" + "\nEstado Civil: "
-									+ ((Men) person).getRelationship(),
+									+ ((Man) person).getRelationship(),
 							"Consulta", JOptionPane.PLAIN_MESSAGE);
 				} else {
 					JOptionPane.showMessageDialog(

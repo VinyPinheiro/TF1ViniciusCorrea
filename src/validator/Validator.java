@@ -62,15 +62,6 @@ public class Validator {
 		return dv;
 	}
 	
-	public static boolean isUniqueCpf(Long cpf, ArrayList<Person> people)
-	{
-		for (Person person : people) {
-			if(person.getCpf().equals(cpf))
-				return false;
-		}
-		return true;
-	}
-	
 	public static boolean isValidCpf(Long cpf)
 	{
 		if(calculateDV(cpf) == cpf % 100)
