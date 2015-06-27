@@ -1,5 +1,6 @@
 /*
  * Sintese
+ * 	Objetivo: Cadastrar pessoas e mostrar seus dados quando solicitado
  * 	Entrada: Nome, Ultima vacinação, cpf, sexo, Estado Civil ou Numero de vezes que engravidou
  * 	Saida: Nome, Ultima vacinação, cpf, sexo, Estado Civil ou Numero de vezes que engravidou
  * 

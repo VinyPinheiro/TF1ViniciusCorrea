@@ -1,21 +1,23 @@
 package validator;
 
+import interfaces.ValorUnico;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import data.Person;
 
-public class Validator {
-	public static boolean isValidString(String value) {
+public class Validator implements ValorUnico {
+	public boolean isValidString(String value) {
 		return ((value.isEmpty()) ? false : true);
 	}
 
-	public static boolean isPositiveNumber(Integer value) {
+	public boolean isPositiveNumber(Integer value) {
 		return ((value < 0) ? false : true);
 	}
 
-	public static boolean isValidDate(String value) {
+	public boolean isValidDate(String value) {
 		SimpleDateFormat format;
 		
 		format = new SimpleDateFormat("dd/MM/yyyy");
@@ -30,7 +32,7 @@ public class Validator {
 		return true;
 	}
 
-	private static int calculateDV(Long cpf) {
+	private int calculateDV(Long cpf) {
 		final int DV1CPFLENGHT = 10;
 		final int DV2CPFLENGHT = 11;
 		long number;
@@ -62,11 +64,20 @@ public class Validator {
 		return dv;
 	}
 	
-	public static boolean isValidCpf(Long cpf)
+	public boolean isValidCpf(Long cpf)
 	{
 		if(calculateDV(cpf) == cpf % 100)
 			return true;
 		else
 			return false;
+	}
+	
+	public boolean isUniqueCpf(Long cpf, ArrayList<Person> people)
+	{
+		for (Person person : people) {
+			if(person.getCpf().equals(cpf))
+				return false;
+		}
+		return true;
 	}
 }

@@ -67,14 +67,14 @@ public class Consult extends JFrame implements ActionListener, WindowListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
-		if (!Validator.isValidString(textCpf.getText().trim())) {
+		Validator validacao = new Validator();
+		if (!validacao.isValidString(textCpf.getText().trim())) {
 			JOptionPane.showMessageDialog(null, "CPF não pode ser vazio",
 					"ERRO", 0);
 			return;
 		}
 
-		if (!Validator.isValidCpf(Long.parseLong(textCpf.getText()))) {
+		if (!validacao.isValidCpf(Long.parseLong(textCpf.getText()))) {
 			JOptionPane.showMessageDialog(null, "CPF invalido", "ERRO", 0);
 			return;
 		}

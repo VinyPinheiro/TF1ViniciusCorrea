@@ -192,29 +192,31 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (!Validator.isValidString(textCpf.getText().trim())) {
+		Validator validacao = new Validator();
+		
+		if (!validacao.isValidString(textCpf.getText().trim())) {
 			JOptionPane.showMessageDialog(null, "CPF não pode ser vazio",
 					"ERRO", 0);
 			return;
 		}
 
-		if (!Validator.isValidCpf(Long.parseLong(textCpf.getText()))) {
+		if (!validacao.isValidCpf(Long.parseLong(textCpf.getText()))) {
 			JOptionPane.showMessageDialog(null, "CPF invalido", "ERRO", 0);
 			return;
 		}
 
-		if (!Validator.isValidDate(textDate.getText())) {
+		if (!validacao.isValidDate(textDate.getText())) {
 			JOptionPane.showMessageDialog(null, "Data invalida", "ERRO", 0);
 			return;
 		}
 
-		if (!Validator.isValidString(textName.getText())) {
+		if (!validacao.isValidString(textName.getText())) {
 			JOptionPane.showMessageDialog(null, "Nome não pode ser vazio",
 					"ERRO", 1);
 			return;
 		}
 		
-		if(!data.isUniqueCpf(Long.parseLong(textCpf.getText())))
+		if(!validacao.isUniqueCpf(Long.parseLong(textCpf.getText()), data.getPeople()))
 		{
 			JOptionPane.showMessageDialog(null, "CPF já cadastrado",
 					"ERRO", 1);
@@ -223,7 +225,7 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 
 		if (radiowoman.isSelected()) {
 
-			if (!Validator.isValidString(textNumberOfTimesPregnant.getText()
+			if (!validacao.isValidString(textNumberOfTimesPregnant.getText()
 					.trim())) {
 				JOptionPane.showMessageDialog(null,
 						"Insira o Número de vezes que a pessoa já engravidou",
@@ -231,7 +233,7 @@ public class Register extends JFrame implements ActionListener, ItemListener,
 				return;
 			}
 
-			if (!Validator.isPositiveNumber(Integer
+			if (!validacao.isPositiveNumber(Integer
 					.parseInt(textNumberOfTimesPregnant.getText().trim()))) {
 				JOptionPane
 						.showMessageDialog(
